@@ -63,11 +63,7 @@ async def predict(file: UploadFile = File(...)):
             temp_path = temp_file.name
 
         result, prob = predict_image(temp_path)
-
-        # prediction در پروژه فعلی int است
         prediction = int(result)
-
-        # confidence از Tensor probability گرفته می‌شود
         confidence = float(prob.max())
 
         return {
