@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/organlogo.png">
+    <title>تشخیص ارقام با شبکه عصبی CNN</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        h1{
+            font-family: "B Titr";
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+        }
+        h2{
+            font-family: "B Nazanin";
+            font-size: 48px;
+            text-align: center;
+            font-weight: bold;
+
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+
+
+        header {
+            position: relative;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .be_nam_khode{
+            font-size: 38px;
+            font-weight: normal;
+            font-family: IranNastaliq;
+        }
+
+        .menu-button {
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            width: 35px;
+            height: 30px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+
+        .menu-button span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: #1f2937;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+
+
+        .menu {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            width: 230px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            padding: 10px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .menu.active {
+            display: block;
+        }
+
+        .menu button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            background: transparent;
+            text-align: right;
+            font-family: inherit;
+            font-size: 15px;
+            color: #374151;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .menu button:hover {
+            background: #f3f4f6;
+        }
+
+
+
+        main {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        .page {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+
+
+        .home-card {
+            background: #ffffff;
+            padding: 55px 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+        }
+
+        .home-card h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #111827;
+        }
+
+        .home-card h2 {
+            font-size: 20px;
+            font-weight: normal;
+            color: #4b5563;
+            margin-bottom: 35px;
+        }
+
+        .my-name {
+            font-family: Vazir;
+            display: inline-block;
+            padding: 15px 25px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            color: #374151;
+            font-size: 15px;
+        }
+
+
+
+        .content-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+        }
+
+        .content-card h2 {
+            margin-bottom: 10px;
+            color: #111827;
+        }
+
+        .content-card p {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .upload-box {
+            border: none;
+            border-radius: 16px;
+            padding: 50px 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+
+        .upload-box input {
+            display: none;
+        }
+        .upload-icon img {
+            width: 40px;
+            height: 40px;
+        }
+        .upload-icon img:hover {
+
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .preview {
+            margin-top: 25px;
+            display: none;
+        }
+
+        .preview img {
+            max-width: 250px;
+            max-height: 250px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+
+
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .action-button {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            background: #1f2937;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .action-button:hover {
+            background: #374151;
+        }
+
+        .clear-button {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .clear-button:hover {
+            background: #d1d5db;
+        }
+
+
+
+        @media (max-width: 600px) {
+            .home-card h1 {
+                font-size: 23px;
+            }
+
+            .home-card h2 {
+                font-size: 17px;
+            }
+
+            .content-card {
+                padding: 25px 15px;
+            }
+
+            canvas {
+                width: 280px;
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+<header>
+
+    <div class="be_nam_khode">
+        به نام خدا
+    </div>
+
+
+    <button class="menu-button" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="menu" id="menu">
+
+        <button onclick="showPage('home')">
+             صفحه اصلی
+        </button>
+
+        <button onclick="showPage('upload')">
+             آپلود تصویر
+        </button>
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+    <section id="home" class="page active">
+
+        <div class="home-card">
+
+            <h1>
+
+                تشخیص ارقام دست‌نویس
+                با شبکه‌های عصبی CNN
+            </h1>
+
+            <h2>
+                سیستم تشخیص ارقام با استفاده از
+                سه مدل شبکه عصبی کانولوشنی
+            </h2>
+
+            <div class="my-name">
+                نام استاد راهنما : سرکار خانم دکتر ساناز اسدی نیا
+                <br>
+                نام دانشجو : سید علیرضا طباطبائی
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="upload" class="page">
+
+        <div class="content-card">
+
+            <h2 >
+                آپلود تصویر
+            </h2>
+
+            <p>
+            تصویر عدد را بارگذاری کنید.
+            </p>
+
+            <label class="upload-box">
+
+                <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/png, image/jpeg, image/jpg"
+                        onchange="previewImage(event)"
+                >
+
+                <div class="upload-icon">
+                    <img src="camera.png" alt="icon_tasvir">
+                </div>
+
+
+
+            </label>
+
+            <div class="preview" id="preview">
+
+                <img
+                        id="previewImage"
+                        src=""
+                        alt="پیش‌نمایش تصویر"
+                >
+
+                <div class="buttons">
+
+                    <button
+                            class="action-button"
+                            onclick="predictImage()"
+                    >
+                        تشخیص رقم
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+</main>
+
+
+
+<script>
+
+
+    const API_URL = "http://95.38.187.123:8002/predict";
+
+
+    function toggleMenu() {
+
+        const menu = document.getElementById("menu");
+
+        menu.classList.toggle("active");
+    }
+
+
+    function showPage(pageId) {
+
+        const pages = document.querySelectorAll(".page");
+
+        pages.forEach(function(page) {
+            page.classList.remove("active");
+        });
+
+        document.getElementById(pageId).classList.add("active");
+
+        document.getElementById("menu").classList.remove("active");
+    }
+
+
+
+    function previewImage(event) {
+
+        const file = event.target.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+            const preview = document.getElementById("preview");
+            const image = document.getElementById("previewImage");
+
+            image.src = e.target.result;
+
+            preview.style.display = "block";
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+
+
+    async function predictImage() {
+
+        const input = document.getElementById("imageInput");
+
+        if (!input.files || input.files.length === 0) {
+
+            alert("لطفاً ابتدا یک تصویر انتخاب کنید.");
+
+            return;
+        }
+
+        const file = input.files[0];
+
+        const formData = new FormData();
+
+        formData.append("file", file);
+
+
+        try {
+
+            // نمایش وضعیت
+            showLoading();
+
+
+            const response = await fetch(
+                API_URL,
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+
+            const data = await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.detail || "خطا در ارتباط با سرور"
+                );
+            }
+
+
+            // show acc
+            showResult(
+                data.prediction,
+                data.confidence
+            );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                "خطا در ارتباط با سرور:\n" +
+                error.message
+            );
+
+        } finally {
+
+            hideLoading();
+        }
+    }
+
+
+
+    function showResult(
+        prediction,
+        confidence
+    ) {
+
+        let resultBox =
+            document.getElementById(
+                "resultBox"
+            );
+
+
+        if (!resultBox) {
+
+            resultBox =
+                document.createElement("div");
+
+            resultBox.id =
+                "resultBox";
+
+
+            resultBox.style.marginTop =
+                "25px";
+
+            resultBox.style.padding =
+                "20px";
+
+            resultBox.style.background =
+                "#f3f4f6";
+
+            resultBox.style.borderRadius =
+                "15px";
+
+            resultBox.style.textAlign =
+                "center";
+
+
+            document.querySelector(
+                ".content-card"
+            ).appendChild(resultBox);
+        }
+
+
+        const percent =
+            (confidence * 100).toFixed(2);
+
+
+        resultBox.innerHTML = `
+            <div style="
+                font-size:18px;
+                color:#374151;
+                margin-bottom:10px;
+            ">
+                نتیجه تشخیص
+            </div>
+
+            <div style="
+                font-size:55px;
+                font-weight:bold;
+                color:#111827;
+                margin-bottom:10px;
+            ">
+                ${prediction}
+            </div>
+
+            <div style="
+                font-size:15px;
+                color:#6b7280;
+            ">
+                میزان اطمینان:
+                ${percent}%
+            </div>
+        `;
+
+
+        resultBox.style.display =
+            "block";
+    }
+
+
+    function hideResult() {
+
+        const resultBox =
+            document.getElementById(
+                "resultBox"
+            );
+
+        if (resultBox) {
+
+            resultBox.style.display =
+                "none";
+        }
+    }
+
+
+    function showLoading() {
+
+        let loading =
+            document.getElementById(
+                "loading"
+            );
+
+
+        if (!loading) {
+
+            loading =
+                document.createElement("div");
+
+            loading.id =
+                "loading";
+
+
+            loading.style.position =
+                "fixed";
+
+            loading.style.top =
+                "0";
+
+            loading.style.left =
+                "0";
+
+            loading.style.width =
+                "100%";
+
+            loading.style.height =
+                "100%";
+
+            loading.style.background =
+                "rgba(255,255,255,0.8)";
+
+            loading.style.display =
+                "flex";
+
+            loading.style.alignItems =
+                "center";
+
+            loading.style.justifyContent =
+                "center";
+
+            loading.style.zIndex =
+                "9999";
+
+
+            loading.innerHTML = `
+                <div style="
+                    background:white;
+                    padding:25px 35px;
+                    border-radius:15px;
+                    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+                    font-family:Tahoma;
+                    font-size:16px;
+                ">
+                    در حال تشخیص رقم...
+                </div>
+            `;
+
+
+            document.body.appendChild(
+                loading
+            );
+        }
+
+
+        loading.style.display =
+            "flex";
+    }
+
+
+    function hideLoading() {
+
+        const loading =
+            document.getElementById(
+                "loading"
+            );
+
+        if (loading) {
+
+            loading.style.display =
+                "none";
+        }
+    }
+
+</script>
+
+</body>
+</html>
