@@ -12,10 +12,7 @@
   <a href="https://fastapi.tiangolo.com/">
     <img src="https://skillicons.dev/icons?i=fastapi" width="50" alt="FastAPI">
   </a>
-  <a href="https://numpy.org/">
-    <img src="https://skillicons.dev/icons?i=numpy" width="50" alt="NumPy">
-  </a>
-  <a href="https://pytorch.org/">
+   <a href="https://pytorch.org/">
     <img src="https://skillicons.dev/icons?i=pytorch" width="50" alt="PyTorch">
   </a>
 </p>
