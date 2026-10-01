@@ -5,6 +5,37 @@
   &nbsp; | &nbsp;
   <a href="README.fa.md">فارسی</a>
 </p>
+</p>
+## Technologies
+
+<p align="center">
+  <a href="https://www.python.org/">
+    <img src="https://skillicons.dev/icons?i=python" width="50" alt="Python">
+  </a>
+  <a href="https://fastapi.tiangolo.com/">
+    <img src="https://skillicons.dev/icons?i=fastapi" width="50" alt="FastAPI">
+  </a>
+   <a href="https://pytorch.org/">
+    <img src="https://skillicons.dev/icons?i=pytorch" width="50" alt="PyTorch">
+  </a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"> 
+    <img src="https://skillicons.dev/icons?i=html" width="50" alt="HTML"> 
+  </a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
+    <img src="https://skillicons.dev/icons?i=css" width="50" alt="CSS">
+  </a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
+    <img src="https://skillicons.dev/icons?i=javascript" width="50" alt="JavaScript"> 
+  </a>
+</p>
+  
+<p align="center">
+  <code>TorchVision</code>
+  <code>CNN</code>
+  <code>MNIST</code>
+  <code>PyTorch Lightning</code>
+</p>
+
 
 # تشخیص اعداد دست‌نویس
 
