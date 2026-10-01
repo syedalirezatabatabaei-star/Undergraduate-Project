@@ -3,7 +3,29 @@
   &nbsp; | &nbsp;
   <a href="README.fa.md">فارسی</a>
 </p>
+## Technologies
 
+<p align="center">
+  <a href="https://www.python.org/">
+    <img src="https://skillicons.dev/icons?i=python" width="50" alt="Python">
+  </a>
+  <a href="https://fastapi.tiangolo.com/">
+    <img src="https://skillicons.dev/icons?i=fastapi" width="50" alt="FastAPI">
+  </a>
+  <a href="https://numpy.org/">
+    <img src="https://skillicons.dev/icons?i=numpy" width="50" alt="NumPy">
+  </a>
+  <a href="https://pytorch.org/">
+    <img src="https://skillicons.dev/icons?i=pytorch" width="50" alt="PyTorch">
+  </a>
+</p>
+
+<p align="center">
+  <code>TorchVision</code>
+  <code>CNN</code>
+  <code>MNIST</code>
+  <code>PyTorch Lightning</code>
+</p>
 # Handwritten Digit Recognition
 
 An undergraduate project for handwritten digit recognition using the MNIST dataset.
