@@ -15,8 +15,17 @@
    <a href="https://pytorch.org/">
     <img src="https://skillicons.dev/icons?i=pytorch" width="50" alt="PyTorch">
   </a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"> 
+    <img src="https://skillicons.dev/icons?i=html" width="50" alt="HTML"> 
+  </a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
+    <img src="https://skillicons.dev/icons?i=css" width="50" alt="CSS">
+  </a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
+    <img src="https://skillicons.dev/icons?i=javascript" width="50" alt="JavaScript"> 
+  </a>
 </p>
-
+  
 <p align="center">
   <code>TorchVision</code>
   <code>CNN</code>
