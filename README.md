@@ -1,27 +1,145 @@
-پروژه کارشناسی
+<p align="center">
+  <a href="README.md">English</a>
+  &nbsp; | &nbsp;
+  <a href="README.fa.md">فارسی</a>
+</p>
 
-این پروژه به عنوان پروژه کارشناسی انجام شده و موضوع آن تشخیص اعداد دست‌نویس با استفاده از دیتاست MNIST بوده است.
+# Handwritten Digit Recognition
 
-در این پروژه هدف این بوده که یک مدل یادگیری ماشین/یادگیری عمیق بتواند تصاویر مربوط به اعداد دست‌نویس را دریافت کرده و عدد موجود در تصویر را تشخیص دهد.
+An undergraduate project for handwritten digit recognition using the MNIST dataset.
 
-دیتاست
+The project includes image preprocessing, model loading, prediction, an API, and a frontend interface for interacting with the trained models.
 
-برای آموزش و ارزیابی مدل از دیتاست معروف MNIST استفاده شده است. این دیتاست شامل تصاویر سیاه‌وسفید اعداد دست‌نویس از ۰ تا ۹ است و یکی از دیتاست‌های استاندارد و پرکاربرد برای شروع کار با پردازش تصویر و شبکه‌های عصبی محسوب می‌شود.
+## Dataset
 
-روند کلی پروژه
+The project uses the MNIST handwritten digit dataset.
 
-به صورت کلی روند پروژه شامل این مراحل است:
+* 10 classes: 0–9
+* Grayscale images
+* Image size: 28 × 28 pixels
 
-دریافت و آماده‌سازی داده‌های MNIST
-پیش‌پردازش تصاویر
-آموزش مدل‌های تشخیص عدد
-ارزیابی عملکرد مدل‌ها
-استفاده از مدل آموزش‌دیده برای تشخیص عدد از روی تصویر ورودی
+## Project Structure
 
-در کنار بخش آموزش مدل، یک بخش برای دریافت تصویر و انجام پیش‌بینی نیز در نظر گرفته شده است تا بتوان نتیجه مدل را روی تصاویر جدید بررسی کرد.
+```text
+Undergraduate-Project/
+│
+├── Frontend/
+├── model/
+├── models/
+│
+├── api.py
+├── preprocessing.py
+├── load.py
+├── ensamble.py
+│
+├── README.md
+└── README.fa.md
+```
 
-این پروژه در قالب پروژه کارشناسی انجام شده و هدف اصلی آن پیاده‌سازی و بررسی یک سیستم ساده برای تشخیص اعداد دست‌نویس از روی تصویر بوده است.
+## Main Files
 
-استاد راهنما دانشگاه : سرکار خانم دکتر ساناز اسدی نیا 
-استاد مشاور پروژه : جناب آقای دکتر حمیدرضا صدرارحامی 
-دانشجو : سید علیرضا طباطبائی 
+### `api.py`
+
+Provides the API used to receive input data and return model predictions.
+
+### `preprocessing.py`
+
+Contains the preprocessing steps required before an image is passed to the model.
+
+### `load.py`
+
+Handles loading the required data and model resources.
+
+### `ensamble.py`
+
+Contains the ensemble-related implementation used in the project.
+
+### `model/`
+
+Contains model-related code and components.
+
+### `models/`
+
+Contains the model files and related resources.
+
+### `Frontend/`
+
+Contains the frontend part of the application.
+
+## Workflow
+
+The general prediction workflow is:
+
+```text
+Input Image
+     |
+     v
+Preprocessing
+     |
+     v
+Trained Model
+     |
+     v
+Prediction
+     |
+     v
+Digit (0-9)
+```
+
+## Technologies
+
+* Python
+* Machine Learning
+* Deep Learning
+* Computer Vision
+* MNIST
+* API
+* Frontend
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/syedalirezatabatabaei-star/Undergraduate-Project.git
+cd Undergraduate-Project
+```
+
+Install the required dependencies for the project environment.
+
+If a `requirements.txt` file is available:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+The project can be used to preprocess a handwritten digit image and pass it to the trained model for classification.
+
+The API provides the interface between the frontend and the prediction system.
+
+## Academic Information
+
+**Project:** Undergraduate Project — Handwritten Digit Recognition
+
+**Student:** Seyed Alireza Tabatabaei
+
+**Supervisor:** Dr. Sanaz Asdinia
+
+**Advisor:** Dr. Hamidreza Sadrarhami
+
+## Future Work
+
+* Improve model performance
+* Compare different model architectures
+* Add prediction confidence
+* Improve the frontend
+* Add automated tests
+* Add API documentation
+* Containerize the application
+* Deploy the application
+
+## License
+
+This project was developed for academic purposes.
